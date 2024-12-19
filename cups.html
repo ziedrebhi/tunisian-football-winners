@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tunisian Cup Winners</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+        th, td {
+            border: 2px solid #000;
+            text-align: center;
+            vertical-align: middle;
+            padding: 2px;
+        }
+        .cell-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+        .year {
+            font-weight: bold;
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="10">Tunisian Cup Winners</th>
+            </tr>
+        </thead>
+        <tbody>
+            <script>
+                const years = Array.from({ length: 96 }, (_, i) => 1930 + i);
+                const winners = {
+                    1938: 'est.png', 1963: 'est.png', 1978: 'est.png', 1979: 'est.png', 1985: 'est.png',1956: 'est.png',
+                    1988: 'est.png', 1990: 'est.png', 1996: 'est.png', 1998: 'est.png', 2005: 'est.png',
+                    2006: 'est.png', 2007: 'est.png', 2010: 'est.png', 2015: 'est.png',
+                    1964: 'ca.png', 1966: 'ca.png', 1967: 'ca.png', 1968: 'ca.png', 1969: 'ca.png',1957: 'st.png',1959: 'st.png',1965: 'st.png',
+                    1971: 'ca.png', 1972: 'ca.png', 1975: 'ca.png', 1991: 'ca.png', 1997: 'ca.png',
+                    1999: 'ca.png', 2016: 'ca.png', 2017: 'ca.png', 1946: 'cshl.png', 1950: 'cshl.png',1947: 'cshl.png',1948: 'cshl.png',1949: 'cshl.png',1950: 'cshl.png',
+                    1953: 'cshl.png', 1954: 'cshl.png', 1984: 'cshl.png', 2000: 'cshl.png', 1958: 'ess.png',
+                    1962: 'ess.png', 1973: 'ess.png', 1974: 'ess.png', 1980: 'ess.png', 1982: 'ess.png',
+                    1995: 'ess.png', 2011: 'ess.png', 2013: 'ess.png', 2014: 'ess.png', 2022: 'ob.png',
+                    2009: 'ob.png', 1992: 'ob.png', 1970: 'css.png', 1994: 'css.png', 2003: 'css.png',
+                    2008: 'css.png', 2018: 'css.png', 2020: 'css.png', 2021: 'css.png', 1955: 'st.png',
+                    2002: 'st.png', 1981: 'cab.png', 1986: 'cab.png', 2012: 'cab.png', 2019: 'usmo.png',
+                    1960: 'asm.png', 1976: 'asm.png', 1986: 'asm.png', 1989: 'asm.png', 1993: 'asm.png',1961: 'st.png',1983: 'asm.png',2023: 'st.png',
+                    2004: 'esz.png', 1987: 'cot.png', 1941: 'samb.jpg'
+                };
+
+                const cols = 10;
+                let currentYearIndex = 0;
+
+                while (currentYearIndex < years.length) {
+                    const row = document.createElement('tr');
+                    for (let i = 0; i < cols; i++) {
+                        const cell = document.createElement('td');
+                        const cellContent = document.createElement('div');
+                        cellContent.className = 'cell-content';
+
+                        if (currentYearIndex < years.length) {
+                            const year = years[currentYearIndex];
+                            const yearText = document.createElement('div');
+                            yearText.className = 'year';
+                            yearText.textContent = year;
+
+                            cellContent.appendChild(yearText);
+
+                            const logo = document.createElement('img');
+                            logo.className = 'logo';
+                            logo.src = winners[year] || 'no-winner.png';
+                            logo.alt = winners[year] ? `Winner: ${year}` : `No Winner: ${year}`;
+                            cellContent.appendChild(logo);
+
+                            currentYearIndex++;
+                        }
+
+                        cell.appendChild(cellContent);
+                        row.appendChild(cell);
+                    }
+                    document.querySelector('table tbody').appendChild(row);
+                }
+            </script>
+        </tbody>
+    </table>
+</body>
+</html>
