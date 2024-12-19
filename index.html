@@ -5,68 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tunisian Winners</title>
     <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
-        }
-        th, td {
-            border: 2px solid #000;
-            text-align: center;
-            vertical-align: middle;
-            padding: 2px;
-        }
-        .cell-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            height: 100%;
-        }
-        .year {
-            font-weight: bold;
-        }
-        .logo {
-            width: 50px;
-            height: 50px;
-            margin: 5px;
-        }
-        .logos-container {
-            display: flex;
-            justify-content: center;
-        }
-        .button-container {
-            margin: 10px;
-            text-align: center;
-        }
-        .team-button {
-            padding: 5px 10px;
-            margin: 5px;
-            cursor: pointer;
-            border: 1px solid #000;
-            background-color: #4CAF50;
-            color: white;
-            border-radius: 5px;
-        }
-        .team-button.selected {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .team-button:not(.selected) {
-            background-color: #ddd;
-            color: black;
-        }
-        .hidden {
-            display: none;
+        /* Same styles as your original code */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
         }
 
-        /* Styling for the Cup and Championship buttons */
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
         .nav-button {
             padding: 10px 20px;
-            margin: 10px;
+            margin: 0 10px;
             cursor: pointer;
-            border: 1px solid #000;
-            background-color: #008CBA;
+            border: 1px solid #007BFF;
+            background-color: #007BFF;
             color: white;
             font-size: 16px;
             border-radius: 5px;
@@ -74,153 +38,249 @@
         }
 
         .nav-button:hover {
-            background-color: #005f7f;
+            background-color: #0056b3;
         }
 
         .nav-button:active {
-            background-color: #003f5f;
+            background-color: #003f7f;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+            font-size: 18px;
+        }
+
+        td {
+            vertical-align: middle;
+        }
+
+        .logos-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            max-width: 100%;
+        }
+
+        .team-button {
+            padding: 5px 10px;
+            margin: 5px;
+            cursor: pointer;
+            border: 1px solid #007BFF;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .team-button.selected {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .team-button:not(.selected) {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .team-button:hover {
+            background-color: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            .button-container {
+                flex-direction: column;
+            }
+
+            .nav-button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .logos-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .logo {
+                width: 40px;
+                height: 40px;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            th, td {
+                padding: 8px;
+            }
+
+            .logo {
+                width: 30px;
+                height: 30px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="button-container" id="button-container">
-        <button class="nav-button" onclick="window.location.href='championship.html'">Championship Winners</button>
-        <button class="nav-button" onclick="window.location.href='cups.html'">Cup Winners</button>
+    <div class="container">
+        <div class="button-container" id="button-container">
+            <button class="nav-button" onclick="window.location.href='championship.html'">Championship Winners</button>
+            <button class="nav-button" onclick="window.location.href='cups.html'">Cup Winners</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="10">Tunisian Championship & Cup Winners</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be populated dynamically -->
+            </tbody>
+        </table>
     </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th colspan="10">Tunisian Championship & Cup Winners</th>
-            </tr>
-        </thead>
-        <tbody>
-            <script>
-                // Calculate current year and create an array from 1930 to the current year
-                const currentYear = new Date().getFullYear();
-                const years = Array.from({ length: currentYear - 1930 + 1 }, (_, i) => 1930 + i);
+    <script>
+        const currentYear = new Date().getFullYear();
+        const years = Array.from({ length: currentYear - 1930 + 1 }, (_, i) => 1930 + i);
 
-                const championshipWinners = {
-                    1941: 'est.png', 1958: 'est.png', 1959: 'est.png', 1960: 'est.png', 1969: 'est.png',
-                    1974: 'est.png', 1975: 'est.png', 1981: 'est.png', 1984: 'est.png', 1987: 'est.png',
-                    1988: 'est.png', 1990: 'est.png', 1992: 'est.png', 1993: 'est.png', 1997: 'est.png',
-                    1998: 'est.png', 1999: 'est.png', 2000: 'est.png', 2001: 'est.png', 2002: 'est.png', 2003: 'est.png',
-                    2005: 'est.png', 2008: 'est.png', 2009: 'est.png', 2010: 'est.png', 2011: 'est.png',
-                    2013: 'est.png', 2016: 'est.png', 2017: 'est.png', 2018: 'est.png', 2019: 'est.png',
-                    2020: 'est.png', 2021: 'est.png', 2023: 'est.png',
-                    1946: 'ca.png', 1947: 'ca.png', 1963: 'ca.png', 1966: 'ca.png', 1972: 'ca.png',
-                    1973: 'ca.png', 1978: 'ca.png', 1979: 'ca.png', 1989: 'ca.png', 1991: 'ca.png',
-                    1995: 'ca.png', 2007: 'ca.png', 2014: 'ca.png',
-                    1949: 'ess.png', 1957: 'ess.png', 1962: 'ess.png', 1965: 'ess.png', 1971: 'ess.png',
-                    1985: 'ess.png', 1986: 'ess.png', 1996: 'ess.png', 2006: 'ess.png', 2015: 'ess.png',
-                    2022: 'ess.png',
-                    1968: 'css.png', 1970: 'css.png', 1977: 'css.png', 1980: 'css.png', 1982: 'css.png',
-                    1994: 'css.png', 2004: 'css.png', 2012: 'css.png',
-                    1950: 'cshl.png', 1953: 'cshl.png', 1954: 'cshl.png', 1955: 'cshl.png',
-                    1956: 'st.png', 1960: 'st.png', 1961: 'st.png', 1964: 'st.png',
-                    1944: 'cab.png', 1945: 'cab.png', 1948: 'cab.png', 1983: 'cab.png',
-                    1933: 'srs.png', 1952: 'srs.png', 1967: 'srs.png',
-                    1976: 'jsk.png'
-                };
+        const championshipWinners = {
+            1941: 'est.png', 1958: 'est.png', 1959: 'est.png', 1960: 'est.png', 1969: 'est.png',
+            1974: 'est.png', 1975: 'est.png', 1981: 'est.png', 1984: 'est.png', 1987: 'est.png',
+            1988: 'est.png', 1990: 'est.png', 1992: 'est.png', 1993: 'est.png', 1997: 'est.png',
+            1998: 'est.png', 1999: 'est.png', 2000: 'est.png', 2001: 'est.png', 2002: 'est.png', 2003: 'est.png',
+            2005: 'est.png', 2008: 'est.png', 2009: 'est.png', 2010: 'est.png', 2011: 'est.png',
+            2013: 'est.png', 2016: 'est.png', 2017: 'est.png', 2018: 'est.png', 2019: 'est.png',
+            2020: 'est.png', 2021: 'est.png', 2023: 'est.png',
+            1946: 'ca.png', 1947: 'ca.png', 1963: 'ca.png', 1966: 'ca.png', 1972: 'ca.png',
+            1973: 'ca.png', 1978: 'ca.png', 1979: 'ca.png', 1989: 'ca.png', 1991: 'ca.png',
+            1995: 'ca.png', 2007: 'ca.png', 2014: 'ca.png',
+            1949: 'ess.png', 1957: 'ess.png', 1962: 'ess.png', 1965: 'ess.png', 1971: 'ess.png',
+            1985: 'ess.png', 1986: 'ess.png', 1996: 'ess.png', 2006: 'ess.png', 2015: 'ess.png',
+            2022: 'ess.png',
+            1968: 'css.png', 1970: 'css.png', 1977: 'css.png', 1980: 'css.png', 1982: 'css.png',
+            1994: 'css.png', 2004: 'css.png', 2012: 'css.png',
+            1950: 'cshl.png', 1953: 'cshl.png', 1954: 'cshl.png', 1955: 'cshl.png',
+            1956: 'st.png', 1960: 'st.png', 1961: 'st.png', 1964: 'st.png',
+            1944: 'cab.png', 1945: 'cab.png', 1948: 'cab.png', 1983: 'cab.png',
+            1933: 'srs.png', 1952: 'srs.png', 1967: 'srs.png',
+            1976: 'jsk.png'
+        };
 
-                const cupWinners = {
-                  1938: 'est.png', 1963: 'est.png', 1978: 'est.png', 1979: 'est.png', 1985: 'est.png',1956: 'est.png',
-                    1988: 'est.png', 1990: 'est.png', 1996: 'est.png', 1998: 'est.png', 2005: 'est.png',
-                    2006: 'est.png', 2007: 'est.png', 2010: 'est.png', 2015: 'est.png',
-                    1964: 'ca.png', 1966: 'ca.png', 1967: 'ca.png', 1968: 'ca.png', 1969: 'ca.png',1957: 'st.png',1959: 'st.png',1965: 'st.png',
-                    1971: 'ca.png', 1972: 'ca.png', 1975: 'ca.png', 1991: 'ca.png', 1997: 'ca.png',
-                    1999: 'ca.png', 2016: 'ca.png', 2017: 'ca.png', 1946: 'cshl.png', 1950: 'cshl.png',1947: 'cshl.png',1948: 'cshl.png',1949: 'cshl.png',1950: 'cshl.png',
-                    1953: 'cshl.png', 1954: 'cshl.png', 1984: 'cshl.png', 2000: 'cshl.png', 1958: 'ess.png',
-                    1962: 'ess.png', 1973: 'ess.png', 1974: 'ess.png', 1980: 'ess.png', 1982: 'ess.png',
-                    1995: 'ess.png', 2011: 'ess.png', 2013: 'ess.png', 2014: 'ess.png', 2022: 'ob.png',
-                    2009: 'ob.png', 1992: 'ob.png', 1970: 'css.png', 1994: 'css.png', 2003: 'css.png',
-                    2008: 'css.png', 2018: 'css.png', 2020: 'css.png', 2021: 'css.png', 1955: 'st.png',
-                    2002: 'st.png', 1981: 'cab.png', 1986: 'cab.png', 2012: 'cab.png', 2019: 'usmo.png',
-                    1960: 'asm.png', 1976: 'asm.png', 1986: 'asm.png', 1989: 'asm.png', 1993: 'asm.png',1961: 'st.png',1983: 'asm.png',2023: 'st.png',
-                    2004: 'esz.png', 1987: 'cot.png', 1941: 'samb.jpg'
-                };
+        const cupWinners = {
+            1938: 'est.png', 1963: 'est.png', 1978: 'est.png', 1979: 'est.png', 1985: 'est.png', 1956: 'est.png',
+            1988: 'est.png', 1990: 'est.png', 1996: 'est.png', 1998: 'est.png', 2005: 'est.png',
+            2006: 'est.png', 2007: 'est.png', 2010: 'est.png', 2015: 'est.png',
+            1964: 'ca.png', 1966: 'ca.png', 1967: 'ca.png', 1968: 'ca.png', 1969: 'ca.png', 1957: 'st.png', 1959: 'st.png', 1965: 'st.png',
+            1971: 'ca.png', 1972: 'ca.png', 1975: 'ca.png', 1991: 'ca.png', 1997: 'ca.png',
+            1999: 'ca.png', 2016: 'ca.png', 2017: 'ca.png', 1946: 'cshl.png', 1950: 'cshl.png', 1947: 'cshl.png', 1948: 'cshl.png', 1949: 'cshl.png', 1950: 'cshl.png',
+            1953: 'cshl.png', 1954: 'cshl.png', 1984: 'cshl.png', 2000: 'cshl.png', 1958: 'ess.png',
+            1962: 'ess.png', 1973: 'ess.png', 1974: 'ess.png', 1980: 'ess.png', 1982: 'ess.png',
+            1995: 'ess.png', 2011: 'ess.png', 2013: 'ess.png', 2014: 'ess.png', 2022: 'ob.png',
+            2009: 'ob.png', 1992: 'ob.png', 1970: 'css.png', 1994: 'css.png', 2003: 'css.png',
+            2008: 'css.png', 2018: 'css.png', 2020: 'css.png', 2021: 'css.png', 1955: 'st.png',
+            2002: 'st.png', 1981: 'cab.png', 1986: 'cab.png', 2012: 'cab.png', 2019: 'usmo.png',
+            1960: 'asm.png', 1976: 'asm.png', 1986: 'asm.png', 1989: 'asm.png', 1993: 'asm.png', 1961: 'st.png', 1983: 'asm.png', 2023: 'st.png',
+            2004: 'esz.png', 1987: 'cot.png', 1941: 'samb.jpg'
+        };
 
-                // Fallback function if the logo is missing
-                function getLogoPath(logo) {
-                    return logo ? logo : 'no-winner.png';
+        function getLogoPath(logo) {
+            return logo ? logo : 'no-winner.png';
+        }
+
+        const buttonContainer = document.getElementById('button-container');
+        const allTeams = new Set([
+            ...Object.values(championshipWinners),
+            ...Object.values(cupWinners)
+        ]);
+
+        allTeams.forEach(teamLogo => {
+            const teamButton = document.createElement('button');
+            teamButton.classList.add('team-button', 'selected');
+            teamButton.setAttribute('data-team', teamLogo);
+            teamButton.textContent = teamLogo.replace('.png', '').replace('.jpg', '').toUpperCase();
+            buttonContainer.appendChild(teamButton);
+        });
+
+        const cols = 10;
+        let currentYearIndex = 0;
+        while (currentYearIndex < years.length) {
+            const row = document.createElement('tr');
+            for (let i = 0; i < cols; i++) {
+                const cell = document.createElement('td');
+                const cellContent = document.createElement('div');
+                cellContent.className = 'cell-content';
+
+                if (currentYearIndex < years.length) {
+                    const year = years[currentYearIndex];
+                    const yearText = document.createElement('div');
+                    yearText.className = 'year';
+                    yearText.textContent = year;
+                    cellContent.appendChild(yearText);
+
+                    const logosContainer = document.createElement('div');
+                    logosContainer.className = 'logos-container';
+
+                    const champLogo = document.createElement('img');
+                    champLogo.className = 'logo';
+                    champLogo.src = getLogoPath(championshipWinners[year]);
+                    champLogo.alt = `Champion: ${year}`;
+                    logosContainer.appendChild(champLogo);
+
+                    const cupLogo = document.createElement('img');
+                    cupLogo.className = 'logo';
+                    cupLogo.src = getLogoPath(cupWinners[year]);
+                    cupLogo.alt = `Cup Winner: ${year}`;
+                    logosContainer.appendChild(cupLogo);
+
+                    cellContent.appendChild(logosContainer);
+                    currentYearIndex++;
                 }
 
-                // Get all unique teams from both championship and cup winners
-                const allTeams = new Set([
-                    ...Object.values(championshipWinners),
-                    ...Object.values(cupWinners)
-                ]);
+                cell.appendChild(cellContent);
+                row.appendChild(cell);
+            }
+            document.querySelector('table tbody').appendChild(row);
+        }
 
-                const buttonContainer = document.getElementById('button-container');
-
-                allTeams.forEach(teamLogo => {
-                    const teamButton = document.createElement('button');
-                    teamButton.classList.add('team-button', 'selected');
-                    teamButton.setAttribute('data-team', teamLogo);
-                    teamButton.textContent = teamLogo.replace('.png', '').replace('.jpg', '').toUpperCase(); // Using team name based on logo
-                    buttonContainer.appendChild(teamButton);
+        const buttons = document.querySelectorAll('.team-button');
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const team = button.getAttribute('data-team');
+                const logos = document.querySelectorAll(`img[src='${team}']`);
+                logos.forEach(logo => {
+                    logo.classList.toggle('hidden');
                 });
-
-                // Table rendering
-                const cols = 10;
-                let currentYearIndex = 0;
-
-                while (currentYearIndex < years.length) {
-                    const row = document.createElement('tr');
-                    for (let i = 0; i < cols; i++) {
-                        const cell = document.createElement('td');
-                        const cellContent = document.createElement('div');
-                        cellContent.className = 'cell-content';
-
-                        if (currentYearIndex < years.length) {
-                            const year = years[currentYearIndex];
-                            const yearText = document.createElement('div');
-                            yearText.className = 'year';
-                            yearText.textContent = year;
-
-                            cellContent.appendChild(yearText);
-
-                            const logosContainer = document.createElement('div');
-                            logosContainer.className = 'logos-container';
-
-                            const champLogo = document.createElement('img');
-                            champLogo.className = 'logo';
-                            champLogo.src = getLogoPath(championshipWinners[year]);
-                            champLogo.alt = championshipWinners[year] ? `Champion: ${year}` : `No Champion: ${year}`;
-                            logosContainer.appendChild(champLogo);
-
-                            const cupLogo = document.createElement('img');
-                            cupLogo.className = 'logo';
-                            cupLogo.src = getLogoPath(cupWinners[year]);
-                            cupLogo.alt = cupWinners[year] ? `Cup Winner: ${year}` : `No Cup Winner: ${year}`;
-                            logosContainer.appendChild(cupLogo);
-
-                            cellContent.appendChild(logosContainer);
-                            currentYearIndex++;
-                        }
-
-                        cell.appendChild(cellContent);
-                        row.appendChild(cell);
-                    }
-                    document.querySelector('table tbody').appendChild(row);
-                }
-
-                // Button functionality to toggle logos and button styling
-                const buttons = document.querySelectorAll('.team-button');
-                buttons.forEach(button => {
-                    button.addEventListener('click', () => {
-                        const team = button.getAttribute('data-team');
-                        const logos = document.querySelectorAll(`img[src='${team}']`); // Match exact logo name
-
-                        logos.forEach(logo => {
-                            logo.classList.toggle('hidden');
-                        });
-
-                        button.classList.toggle('selected');
-                    });
-                });
-            </script>
-        </tbody>
-    </table>
+                button.classList.toggle('selected');
+            });
+        });
+    </script>
 </body>
 </html>
