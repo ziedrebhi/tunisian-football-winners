@@ -4,18 +4,143 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tunisian Cup Winners</title>
-    <style>
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            border: 1px solid #007BFF;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-button:hover {
+            background-color: #0056b3;
+        }
+
+        .nav-button:active {
+            background-color: #003f7f;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            table-layout: fixed;
+            margin-top: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         th, td {
-            border: 2px solid #000;
+            border: 1px solid #ddd;
+            padding: 12px;
             text-align: center;
-            vertical-align: middle;
-            padding: 2px;
         }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+            font-size: 18px;
+        }
+
+        td {
+            vertical-align: middle;
+        }
+
+        .logos-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            max-width: 100%;
+        }
+
+        .team-button {
+            padding: 5px 10px;
+            margin: 5px;
+            cursor: pointer;
+            border: 1px solid #007BFF;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .team-button.selected {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .team-button:not(.selected) {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .team-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            .button-container {
+                flex-direction: column;
+            }
+
+            .nav-button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .logos-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .logo {
+                width: 40px;
+                height: 40px;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            th, td {
+                padding: 8px;
+            }
+
+            .logo {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
         .cell-content {
             display: flex;
             flex-direction: column;
@@ -23,9 +148,11 @@
             align-items: center;
             height: 100%;
         }
+
         .year {
             font-weight: bold;
         }
+
         .logo {
             width: 100px;
             height: 100px;
@@ -33,6 +160,11 @@
     </style>
 </head>
 <body>
+ <div class="container">
+  <div class="button-container" id="button-container">
+            <button class="nav-button" onclick="window.location.href='index.html'">Home</button>
+            <button class="nav-button" onclick="window.location.href='championship.html'">Championship Winners</button>
+        </div>
     <table>
         <thead>
             <tr>
@@ -94,5 +226,6 @@
             </script>
         </tbody>
     </table>
+	    </div>
 </body>
 </html>
