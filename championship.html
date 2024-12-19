@@ -5,18 +5,142 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tunisian Championship Winners</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            border: 1px solid #007BFF;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-button:hover {
+            background-color: #0056b3;
+        }
+
+        .nav-button:active {
+            background-color: #003f7f;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            table-layout: fixed;
+            margin-top: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         th, td {
-            border: 2px solid #000;
+            border: 1px solid #ddd;
+            padding: 12px;
             text-align: center;
-            vertical-align: middle;
-            padding: 2px;
-            
         }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+            font-size: 18px;
+        }
+
+        td {
+            vertical-align: middle;
+        }
+
+        .logos-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            max-width: 100%;
+        }
+
+        .team-button {
+            padding: 5px 10px;
+            margin: 5px;
+            cursor: pointer;
+            border: 1px solid #007BFF;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .team-button.selected {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .team-button:not(.selected) {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .team-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            .button-container {
+                flex-direction: column;
+            }
+
+            .nav-button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .logos-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .logo {
+                width: 40px;
+                height: 40px;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            th, td {
+                padding: 8px;
+            }
+
+            .logo {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
         .cell-content {
             display: flex;
             flex-direction: column;
@@ -24,9 +148,11 @@
             align-items: center;
             height: 100%;
         }
+
         .year {
             font-weight: bold;
         }
+
         .logo {
             width: 100px;
             height: 100px;
@@ -34,71 +160,78 @@
     </style>
 </head>
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th colspan="10">Tunisian Championship Winners</th>
-            </tr>
-        </thead>
-        <tbody>
-            <script>
-                const years = Array.from({ length: 96 }, (_, i) => 1930 + i);
-                const winners = {
-                    1941: 'est.png', 1958: 'est.png', 1959: 'est.png', 1960: 'est.png', 1969: 'est.png',
-                    1974: 'est.png', 1975: 'est.png', 1981: 'est.png', 1984: 'est.png', 1987: 'est.png',
-                    1988: 'est.png', 1990: 'est.png', 1992: 'est.png', 1993: 'est.png', 1997: 'est.png',
-                    1998: 'est.png', 2000: 'est.png', 2001: 'est.png', 2002: 'est.png', 2003: 'est.png',
-                    2005: 'est.png', 2008: 'est.png', 2009: 'est.png', 2010: 'est.png', 2011: 'est.png',
-                    2013: 'est.png', 2016: 'est.png', 2017: 'est.png', 2018: 'est.png', 2019: 'est.png',1999: 'est.png',
-                    2020: 'est.png', 2021: 'est.png', 2023: 'est.png',
-                    1946: 'ca.png', 1947: 'ca.png', 1963: 'ca.png', 1966: 'ca.png', 1972: 'ca.png',
-                    1973: 'ca.png', 1978: 'ca.png', 1979: 'ca.png', 1989: 'ca.png', 1991: 'ca.png',
-                    1995: 'ca.png', 2007: 'ca.png', 2014: 'ca.png',
-                    1949: 'ess.png', 1957: 'ess.png', 1962: 'ess.png', 1965: 'ess.png', 1971: 'ess.png',
-                    1985: 'ess.png', 1986: 'ess.png', 1996: 'ess.png', 2006: 'ess.png', 2015: 'ess.png',
-                    2022: 'ess.png',
-                    1968: 'css.png', 1970: 'css.png', 1977: 'css.png', 1980: 'css.png', 1982: 'css.png',
-                    1994: 'css.png', 2004: 'css.png', 2012: 'css.png',
-                    1950: 'cshl.png', 1953: 'cshl.png', 1954: 'cshl.png', 1955: 'cshl.png',
-                    1956: 'st.png', 1960: 'st.png', 1961: 'st.png', 1964: 'st.png',
-                    1944: 'cab.png', 1945: 'cab.png', 1948: 'cab.png', 1983: 'cab.png',
-                    1933: 'srs.png', 1952: 'srs.png', 1967: 'srs.png',
-                    1976: 'jsk.png'
-                };
-                const cols = 10;
-                let currentYearIndex = 0;
+    <div class="container">
+        <div class="button-container" id="button-container">
+		 <button class="nav-button" onclick="window.location.href='index.html'">Home</button>
+            <button class="nav-button" onclick="window.location.href='cups.html'">Cup Winners</button>
+        </div>
 
-                while (currentYearIndex < years.length) {
-                    const row = document.createElement('tr');
-                    for (let i = 0; i < cols; i++) {
-                        const cell = document.createElement('td');
-                        const cellContent = document.createElement('div');
-                        cellContent.className = 'cell-content';
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="10">Tunisian Championship Winners</th>
+                </tr>
+            </thead>
+            <tbody>
+                <script>
+                    const years = Array.from({ length: 96 }, (_, i) => 1930 + i);
+                    const winners = {
+                        1941: 'est.png', 1958: 'est.png', 1959: 'est.png', 1960: 'est.png', 1969: 'est.png',
+                        1974: 'est.png', 1975: 'est.png', 1981: 'est.png', 1984: 'est.png', 1987: 'est.png',
+                        1988: 'est.png', 1990: 'est.png', 1992: 'est.png', 1993: 'est.png', 1997: 'est.png',
+                        1998: 'est.png', 2000: 'est.png', 2001: 'est.png', 2002: 'est.png', 2003: 'est.png',
+                        2005: 'est.png', 2008: 'est.png', 2009: 'est.png', 2010: 'est.png', 2011: 'est.png',
+                        2013: 'est.png', 2016: 'est.png', 2017: 'est.png', 2018: 'est.png', 2019: 'est.png',1999: 'est.png',
+                        2020: 'est.png', 2021: 'est.png', 2023: 'est.png',
+                        1946: 'ca.png', 1947: 'ca.png', 1963: 'ca.png', 1966: 'ca.png', 1972: 'ca.png',
+                        1973: 'ca.png', 1978: 'ca.png', 1979: 'ca.png', 1989: 'ca.png', 1991: 'ca.png',
+                        1995: 'ca.png', 2007: 'ca.png', 2014: 'ca.png',
+                        1949: 'ess.png', 1957: 'ess.png', 1962: 'ess.png', 1965: 'ess.png', 1971: 'ess.png',
+                        1985: 'ess.png', 1986: 'ess.png', 1996: 'ess.png', 2006: 'ess.png', 2015: 'ess.png',
+                        2022: 'ess.png',
+                        1968: 'css.png', 1970: 'css.png', 1977: 'css.png', 1980: 'css.png', 1982: 'css.png',
+                        1994: 'css.png', 2004: 'css.png', 2012: 'css.png',
+                        1950: 'cshl.png', 1953: 'cshl.png', 1954: 'cshl.png', 1955: 'cshl.png',
+                        1956: 'st.png', 1960: 'st.png', 1961: 'st.png', 1964: 'st.png',
+                        1944: 'cab.png', 1945: 'cab.png', 1948: 'cab.png', 1983: 'cab.png',
+                        1933: 'srs.png', 1952: 'srs.png', 1967: 'srs.png',
+                        1976: 'jsk.png'
+                    };
+                    const cols = 10;
+                    let currentYearIndex = 0;
 
-                        if (currentYearIndex < years.length) {
-                            const year = years[currentYearIndex];
-                            const yearText = document.createElement('div');
-                            yearText.className = 'year';
-                            yearText.textContent = year;
+                    while (currentYearIndex < years.length) {
+                        const row = document.createElement('tr');
+                        for (let i = 0; i < cols; i++) {
+                            const cell = document.createElement('td');
+                            const cellContent = document.createElement('div');
+                            cellContent.className = 'cell-content';
 
-                            cellContent.appendChild(yearText);
+                            if (currentYearIndex < years.length) {
+                                const year = years[currentYearIndex];
+                                const yearText = document.createElement('div');
+                                yearText.className = 'year';
+                                yearText.textContent = year;
 
-                            const logo = document.createElement('img');
-                            logo.className = 'logo';
-                            logo.src = winners[year] || 'no-winner.png';
-                            logo.alt = winners[year] ? `Winner: ${year}` : `No Winner: ${year}`;
-                            cellContent.appendChild(logo);
+                                cellContent.appendChild(yearText);
 
-                            currentYearIndex++;
+                                const logo = document.createElement('img');
+                                logo.className = 'logo';
+                                logo.src = winners[year] || 'no-winner.png';
+                                logo.alt = winners[year] ? `Winner: ${year}` : `No Winner: ${year}`;
+                                cellContent.appendChild(logo);
+
+                                currentYearIndex++;
+                            }
+
+                            cell.appendChild(cellContent);
+                            row.appendChild(cell);
                         }
-
-                        cell.appendChild(cellContent);
-                        row.appendChild(cell);
+                        document.querySelector('table tbody').appendChild(row);
                     }
-                    document.querySelector('table tbody').appendChild(row);
-                }
-            </script>
-        </tbody>
-    </table>
+                </script>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
